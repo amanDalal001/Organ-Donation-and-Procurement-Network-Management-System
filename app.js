@@ -43,4 +43,8 @@ app.post('/login',(req, res)=>{
     console.log(username+" "+ password);
 });
 
+app.get('/home',(req,res)=>{
+    
+})
+
 app.listen(port);
