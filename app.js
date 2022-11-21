@@ -26,25 +26,44 @@ app.get('/', (req, res) => {
 // });
 
 app.get('/login',(req, res)=>{
-    res.sendFile(__dirname + '/views/home.html');
+    res.sendFile(__dirname + '/views/login.html');
 });
 
 app.post('/login',(req, res)=>{
     const body = req.body;
     const username  = body.username;
     const password = body.password;
-
+    const validlogin =  false;
     Users.forEach((user)=>{
         if(user.username == username && user.password == password)
         {
-            res.redirect('/login');
+            res.redirect('/home');
+            validlogin = true;
         }
-    } )
+    })
+    if(!validlogin) {
+        res.redirect('/login');    
+    }
+
+
     console.log(username+" "+ password);
 });
 
+
 app.get('/home',(req,res)=>{
+    res.sendFile(__dirname + '/views/home.html');
+});
+
+app.post('/home',(req,res)=>{});
+
+
+app.get('/show_update_details',(req,res)=>{
+    res.sendFile(__dirname + '/views/search_details.html');
+});
+
+app.post('/show_update_details',(req,res)=>{
+    const body = req.body;
     
-})
+});
 
 app.listen(port);
